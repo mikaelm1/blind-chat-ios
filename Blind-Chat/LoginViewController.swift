@@ -73,11 +73,19 @@ class LoginViewController: UIViewController {
         loginButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
     
+    // MARK: - Actions
     func loginButtonTapped(sender: UIButton) {
-        
-        ChatAPIManager.shared.connectToServerWithUser(user: "Becca") { (users) in
-            print("USERS: \(users)")
-        }
+        let vc = UsersViewController()
+        vc.user = getUser()
+        present(vc, animated: true, completion: nil)
+
+    }
+    
+    // MARK: - Helpers
+    
+    func getUser() -> String {
+        // TODO: - This will be a User model with error handling
+        return usernameField.text!
     }
 
 }
