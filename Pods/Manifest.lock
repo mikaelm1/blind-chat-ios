@@ -1,0 +1,17 @@
+PODS:
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
+  - Socket.IO-Client-Swift (8.0.2)
+
+DEPENDENCIES:
+  - ChameleonFramework/Swift
+  - Socket.IO-Client-Swift
+
+SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  Socket.IO-Client-Swift: 136598e4a81a42b0e6855e7f94a0e5a6efdc5ff8
+
+PODFILE CHECKSUM: ddcce3fb6c7186264b4f16cdd61e461af102ce6c
+
+COCOAPODS: 1.1.0.rc.2

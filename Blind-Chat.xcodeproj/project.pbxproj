@@ -12,9 +12,13 @@
 		70C6A2431DA73CA300FAE6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2411DA73CA300FAE6A4 /* Main.storyboard */; };
 		70C6A2451DA73CA300FAE6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2441DA73CA300FAE6A4 /* Assets.xcassets */; };
 		70C6A2481DA73CA300FAE6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2461DA73CA300FAE6A4 /* LaunchScreen.storyboard */; };
+		FED019A494B900B0A647D5C2 /* Pods_Blind_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0CCC7CC6CBA50841FED18903 /* Pods-Blind-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.release.xcconfig"; sourceTree = "<group>"; };
+		10FFFD26260E9AAE0F162D2C /* Pods-Blind-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.debug.xcconfig"; sourceTree = "<group>"; };
+		6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blind_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C6A23A1DA73CA300FAE6A4 /* Blind-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blind-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70C6A23F1DA73CA300FAE6A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -29,17 +33,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FED019A494B900B0A647D5C2 /* Pods_Blind_Chat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38B7482CC6D82504B50FB3F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		70C6A2311DA73CA300FAE6A4 = {
 			isa = PBXGroup;
 			children = (
 				70C6A23C1DA73CA300FAE6A4 /* Blind-Chat */,
 				70C6A23B1DA73CA300FAE6A4 /* Products */,
+				7490854C79CE4B6B562BF2EE /* Pods */,
+				38B7482CC6D82504B50FB3F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +79,15 @@
 			path = "Blind-Chat";
 			sourceTree = "<group>";
 		};
+		7490854C79CE4B6B562BF2EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10FFFD26260E9AAE0F162D2C /* Pods-Blind-Chat.debug.xcconfig */,
+				0CCC7CC6CBA50841FED18903 /* Pods-Blind-Chat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70C6A24C1DA73CA300FAE6A4 /* Build configuration list for PBXNativeTarget "Blind-Chat" */;
 			buildPhases = (
+				720D392474F94AB3186E876F /* [CP] Check Pods Manifest.lock */,
 				70C6A2361DA73CA300FAE6A4 /* Sources */,
 				70C6A2371DA73CA300FAE6A4 /* Frameworks */,
 				70C6A2381DA73CA300FAE6A4 /* Resources */,
+				77EFFF0AEDE0CCDFD9ED7A5A /* [CP] Embed Pods Frameworks */,
+				8279EE457DE7A75FE3C9B0F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		720D392474F94AB3186E876F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		77EFFF0AEDE0CCDFD9ED7A5A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8279EE457DE7A75FE3C9B0F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		70C6A2361DA73CA300FAE6A4 /* Sources */ = {
@@ -258,6 +333,7 @@
 		};
 		70C6A24D1DA73CA300FAE6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10FFFD26260E9AAE0F162D2C /* Pods-Blind-Chat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DU7XEDNZGC;
@@ -271,6 +347,7 @@
 		};
 		70C6A24E1DA73CA300FAE6A4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0CCC7CC6CBA50841FED18903 /* Pods-Blind-Chat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = DU7XEDNZGC;
@@ -301,6 +378,7 @@
 				70C6A24E1DA73CA300FAE6A4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
