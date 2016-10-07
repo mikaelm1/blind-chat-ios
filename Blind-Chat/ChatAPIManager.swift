@@ -29,7 +29,6 @@ class ChatAPIManager: NSObject {
             completion(users)
         }
 
-        
     }
     
     func openConnection() {

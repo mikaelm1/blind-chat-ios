@@ -76,7 +76,6 @@
 				70C6A2821DA74A5400FAE6A4 /* View */,
 				70C6A2811DA74A4F00FAE6A4 /* Model */,
 				70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */,
-				70C6A23F1DA73CA300FAE6A4 /* LoginViewController.swift */,
 				70C6A2411DA73CA300FAE6A4 /* Main.storyboard */,
 				70C6A2441DA73CA300FAE6A4 /* Assets.xcassets */,
 				70C6A2461DA73CA300FAE6A4 /* LaunchScreen.storyboard */,
@@ -102,6 +101,7 @@
 		70C6A2831DA74A5A00FAE6A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				70C6A23F1DA73CA300FAE6A4 /* LoginViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
