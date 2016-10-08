@@ -14,6 +14,7 @@
 		70C6A2481DA73CA300FAE6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2461DA73CA300FAE6A4 /* LaunchScreen.storyboard */; };
 		70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2851DA74A7B00FAE6A4 /* ChatAPIManager.swift */; };
 		70C6A2881DA7707300FAE6A4 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2871DA7707300FAE6A4 /* UsersViewController.swift */; };
+		70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2891DA8E5E300FAE6A4 /* User.swift */; };
 		FED019A494B900B0A647D5C2 /* Pods_Blind_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		70C6A2491DA73CA300FAE6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70C6A2851DA74A7B00FAE6A4 /* ChatAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatAPIManager.swift; sourceTree = "<group>"; };
 		70C6A2871DA7707300FAE6A4 /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		70C6A2891DA8E5E300FAE6A4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 		70C6A2811DA74A4F00FAE6A4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				70C6A2891DA8E5E300FAE6A4 /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				70C6A2401DA73CA300FAE6A4 /* LoginViewController.swift in Sources */,
 				70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */,
 				70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */,
+				70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */,
 				70C6A2881DA7707300FAE6A4 /* UsersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

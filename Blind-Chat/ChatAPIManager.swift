@@ -25,7 +25,6 @@ class ChatAPIManager: NSObject {
         socket.emit("connectUser", user)
         print("Emitted connectUser")
         socket.on("userList") { (users, ack) in
-            print("Inside userList ")
             completion(users)
         }
 

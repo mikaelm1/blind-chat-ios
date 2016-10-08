@@ -77,8 +77,13 @@ class LoginViewController: UIViewController {
     func loginButtonTapped(sender: UIButton) {
         let vc = UsersViewController()
         vc.user = getUser()
-        present(vc, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true, completion: nil)
 
+    }
+    
+    func registerUser() {
+        
     }
     
     // MARK: - Helpers
