@@ -12,30 +12,50 @@ class APIManager {
     
     static let shared = APIManager()
     
-    func registerUser(user: User, withPassword pwd: String, completion: @escaping (_ error: Error?) -> Void) {
+    func registerUser(user: User, withPassword pwd: String, completion: @escaping (_ error: String?) -> Void) {
         
         var request = URLRequest(url: URL(string: "http://localhost:5000/register")!)
         request.httpMethod = "POST"
         let postString = "username=\(user.username!)&email=\(user.email!)&password=\(pwd)"
         request.httpBody = postString.data(using: .utf8)
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
+            guard let _ = data, error == nil else {
                 print("error=\(error)")
                 return
             }
-            
-            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
-                print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                print("response = \(response)")
-            }
-            
             if let status = response as? HTTPURLResponse {
-                print(status.statusCode)
+                switch status.statusCode {
+                case 200:
+                    completion(nil)
+                case 400:
+                    completion("User already exists")
+                default:
+                    completion("Error creating account")
+                }
             }
             
-            let responseString = String(data: data, encoding: .utf8)
-            print("responseString = \(responseString)")
-
+//            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+//
+//            print(json)
+//            guard let jsonToDict = json as? [String: AnyObject] else {
+//                completion("Erro creating account")
+//                return
+//            }
+//            
+//            guard let responseDict = jsonToDict["response"] as? [String: AnyObject] else {
+//                completion("Error creating account")
+//                return
+//            }
+//            
+//            if let failure = responseDict["failure"] as? String {
+//                completion(failure)
+//                return
+//            }
+//            if let success = responseDict["success"] as? String {
+//                completion(nil)
+//                return
+//            }
+            
         }
         task.resume()
         

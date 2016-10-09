@@ -107,7 +107,7 @@ class LoginViewController: UIViewController {
     func registerUser(user: User, password: String) {
         apiManager.registerUser(user: user, withPassword: password) { (error) in
             if let err = error {
-                print("Error registering: \(err.localizedDescription)")
+                print("Error registering: \(err)")
             } else {
                 print("Registered user: \(user.username)")
             }
