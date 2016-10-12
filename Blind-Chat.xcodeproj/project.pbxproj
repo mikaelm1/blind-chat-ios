@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */; };
-		70C6A2401DA73CA300FAE6A4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23F1DA73CA300FAE6A4 /* LoginViewController.swift */; };
+		70C6A2401DA73CA300FAE6A4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */; };
 		70C6A2431DA73CA300FAE6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2411DA73CA300FAE6A4 /* Main.storyboard */; };
 		70C6A2451DA73CA300FAE6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2441DA73CA300FAE6A4 /* Assets.xcassets */; };
 		70C6A2481DA73CA300FAE6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2461DA73CA300FAE6A4 /* LaunchScreen.storyboard */; };
@@ -25,7 +25,7 @@
 		6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blind_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C6A23A1DA73CA300FAE6A4 /* Blind-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blind-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		70C6A23F1DA73CA300FAE6A4 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		70C6A2421DA73CA300FAE6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		70C6A2441DA73CA300FAE6A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		70C6A2471DA73CA300FAE6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		70C6A2831DA74A5A00FAE6A4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				70C6A23F1DA73CA300FAE6A4 /* LoginViewController.swift */,
+				70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */,
 				70C6A2871DA7707300FAE6A4 /* UsersViewController.swift */,
 			);
 			name = Controller;
@@ -258,7 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70C6A28C1DA8E70500FAE6A4 /* APIManager.swift in Sources */,
-				70C6A2401DA73CA300FAE6A4 /* LoginViewController.swift in Sources */,
+				70C6A2401DA73CA300FAE6A4 /* RegisterViewController.swift in Sources */,
 				70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */,
 				70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */,
 				70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */,
