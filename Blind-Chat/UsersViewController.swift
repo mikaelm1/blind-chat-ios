@@ -32,6 +32,8 @@ class UsersViewController: UIViewController {
         view.backgroundColor = FlatWhite()
         title = "Users"
         setupCollectionView()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed(sender:)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +70,10 @@ class UsersViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+    }
+    
+    func refreshButtonPressed(sender: UIBarButtonItem) {
+        getUsers()
     }
 
 }

@@ -45,6 +45,7 @@ class RegisterViewController: UIViewController {
         b.translatesAutoresizingMaskIntoConstraints = false
         b.backgroundColor = FlatMint()
         b.setTitle("Register", for: [])
+        b.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         b.addTarget(self, action: #selector(loginButtonTapped(sender:)), for: .touchUpInside)
         b.setTitleColor(FlatWhite(), for: [])
         return b
@@ -81,10 +82,6 @@ class RegisterViewController: UIViewController {
     let chatManager = ChatAPIManager.shared
     let apiManager = APIManager.shared
     var registering = true
-    var fieldContainerHeight: NSLayoutConstraint?
-    var emailFieldHeight: NSLayoutConstraint?
-    var usernameFieldHeight: NSLayoutConstraint?
-    var passwordFieldHeight: NSLayoutConstraint?
     var stackViewHeight: NSLayoutConstraint?
     
     override func viewDidLoad() {
@@ -106,8 +103,9 @@ class RegisterViewController: UIViewController {
         view.addSubview(stackView)
         
         stackView.addArrangedSubview(usernameField)
-        stackView.addArrangedSubview(passwordField)
         stackView.addArrangedSubview(emailField)
+        stackView.addArrangedSubview(passwordField)
+        
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -100).isActive = true
         stackViewHeight = stackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.21)
@@ -117,7 +115,7 @@ class RegisterViewController: UIViewController {
         view.addSubview(registerButton)
         registerButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 10).isActive = true
         registerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: 0).isActive = true
-        registerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true 
+        registerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9).isActive = true
         registerButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         view.addSubview(loginButton)
@@ -142,6 +140,14 @@ class RegisterViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
         
+        if registering {
+            registerButton.setTitle("Login", for: [])
+            loginButton.setTitle("Register", for: [])
+        } else {
+            registerButton.setTitle("Register", for: [])
+            loginButton.setTitle("Login", for: [])
+        }
+        
         registering = !registering
     }
     
@@ -151,10 +157,12 @@ class RegisterViewController: UIViewController {
             let pwd = passwordField.text!
             registerUser(user: user, password: pwd)
         } else {
-            // login
+            loginUser()
         }
 
     }
+    
+    // MARK: - API Calls 
     
     func registerUser(user: User, password: String) {
         apiManager.registerUser(user: user, withPassword: password) { (error) in
@@ -162,17 +170,33 @@ class RegisterViewController: UIViewController {
                 print("Error registering: \(err)")
             } else {
                 print("Registered user: \(user.username)")
-                DispatchQueue.main.async {
-                    let vc = UsersViewController()
-                    vc.user = self.getUser()
-                    let nav = UINavigationController(rootViewController: vc)
-                    self.present(nav, animated: true, completion: nil)
-                }
+                self.gotoUsersVC()
+            }
+        }
+    }
+    
+    func loginUser() {
+        let username = usernameField.text!
+        let pwd = passwordField.text!
+        apiManager.loginUser(username: username, password: pwd) { (error) in
+            if let error = error {
+                print("Error logging in: \(error)")
+            } else {
+                self.gotoUsersVC()
             }
         }
     }
     
     // MARK: - Helpers
+    
+    func gotoUsersVC() {
+        DispatchQueue.main.async {
+            let vc = UsersViewController()
+            vc.user = self.getUser()
+            let nav = UINavigationController(rootViewController: vc)
+            self.present(nav, animated: true, completion: nil)
+        }
+    }
     
     func getUser() -> String {
         // TODO: - This will be a User model with error handling
