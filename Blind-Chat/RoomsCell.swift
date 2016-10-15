@@ -11,10 +11,28 @@ import ChameleonFramework
 
 class RoomsCell: UICollectionViewCell {
     
+    let roomNameLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        return l
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = RedFlat()
+        backgroundColor = FlatRed()
+        setupViews()
+    }
+    
+    func setupViews() {
+        addSubview(roomNameLabel)
+        
+        roomNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
+        roomNameLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 0).isActive = true
+    }
+    
+    func configureCell(forRoom room: String) {
+        roomNameLabel.text = room
     }
     
     required init?(coder aDecoder: NSCoder) {

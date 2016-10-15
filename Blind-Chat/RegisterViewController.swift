@@ -170,7 +170,7 @@ class RegisterViewController: UIViewController {
                 print("Error registering: \(err)")
             } else {
                 print("Registered user: \(user.username)")
-                self.gotoUsersVC()
+                self.gotoRoomsVC()
             }
         }
     }
@@ -182,16 +182,16 @@ class RegisterViewController: UIViewController {
             if let error = error {
                 print("Error logging in: \(error)")
             } else {
-                self.gotoUsersVC()
+                self.gotoRoomsVC()
             }
         }
     }
     
     // MARK: - Helpers
     
-    func gotoUsersVC() {
+    func gotoRoomsVC() {
         DispatchQueue.main.async {
-            let vc = UsersViewController()
+            let vc = ChatRoomsController()
             vc.user = self.getUser()
             let nav = UINavigationController(rootViewController: vc)
             self.present(nav, animated: true, completion: nil)

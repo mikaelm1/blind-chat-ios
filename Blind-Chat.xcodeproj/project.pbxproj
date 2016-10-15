@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */; };
-		706F37F01DB1C97A009BBFC0 /* UsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37EF1DB1C97A009BBFC0 /* UsersCell.swift */; };
+		706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */; };
 		706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */; };
 		70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */; };
 		70C6A2401DA73CA300FAE6A4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */; };
@@ -16,7 +16,7 @@
 		70C6A2451DA73CA300FAE6A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2441DA73CA300FAE6A4 /* Assets.xcassets */; };
 		70C6A2481DA73CA300FAE6A4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2461DA73CA300FAE6A4 /* LaunchScreen.storyboard */; };
 		70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2851DA74A7B00FAE6A4 /* ChatAPIManager.swift */; };
-		70C6A2881DA7707300FAE6A4 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2871DA7707300FAE6A4 /* UsersViewController.swift */; };
+		70C6A2881DA7707300FAE6A4 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2871DA7707300FAE6A4 /* MessagesViewController.swift */; };
 		70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A2891DA8E5E300FAE6A4 /* User.swift */; };
 		70C6A28C1DA8E70500FAE6A4 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A28B1DA8E70500FAE6A4 /* APIManager.swift */; };
 		FED019A494B900B0A647D5C2 /* Pods_Blind_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */; };
@@ -27,7 +27,7 @@
 		10FFFD26260E9AAE0F162D2C /* Pods-Blind-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blind_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsController.swift; sourceTree = "<group>"; };
-		706F37EF1DB1C97A009BBFC0 /* UsersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersCell.swift; sourceTree = "<group>"; };
+		706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsCell.swift; sourceTree = "<group>"; };
 		70C6A23A1DA73CA300FAE6A4 /* Blind-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blind-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 		70C6A2471DA73CA300FAE6A4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		70C6A2491DA73CA300FAE6A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		70C6A2851DA74A7B00FAE6A4 /* ChatAPIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatAPIManager.swift; sourceTree = "<group>"; };
-		70C6A2871DA7707300FAE6A4 /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		70C6A2871DA7707300FAE6A4 /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		70C6A2891DA8E5E300FAE6A4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		70C6A28B1DA8E70500FAE6A4 /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -107,7 +107,7 @@
 		70C6A2821DA74A5400FAE6A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				706F37EF1DB1C97A009BBFC0 /* UsersCell.swift */,
+				706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */,
 				706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */,
 			);
 			name = View;
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */,
-				70C6A2871DA7707300FAE6A4 /* UsersViewController.swift */,
+				70C6A2871DA7707300FAE6A4 /* MessagesViewController.swift */,
 				706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */,
 			);
 			name = Controller;
@@ -270,9 +270,9 @@
 				70C6A2401DA73CA300FAE6A4 /* RegisterViewController.swift in Sources */,
 				70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */,
 				70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */,
-				706F37F01DB1C97A009BBFC0 /* UsersCell.swift in Sources */,
+				706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */,
 				70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */,
-				70C6A2881DA7707300FAE6A4 /* UsersViewController.swift in Sources */,
+				70C6A2881DA7707300FAE6A4 /* MessagesViewController.swift in Sources */,
 				706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */,
 				706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */,
 			);
