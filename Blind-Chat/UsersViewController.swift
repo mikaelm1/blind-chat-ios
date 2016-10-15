@@ -56,8 +56,9 @@ class UsersViewController: UIViewController {
     
     func getUsers() {
         ChatAPIManager.shared.connectToServerWithUser(user: user) { (users) in
+            print("USERS: \(users.count)")
             print("USERS: \(users)")
-            guard let users = users as? [Any] else {
+            guard let users = users as? [[String: AnyObject]] else {
                 print("Problem casting users")
                 return
             }
@@ -92,20 +93,6 @@ extension UsersViewController: UICollectionViewDelegate, UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width, height: 100)
-    }
-    
-}
-
-class UsersCell: UICollectionViewCell {
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        backgroundColor = FlatTeal()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
     }
     
 }

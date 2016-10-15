@@ -25,7 +25,11 @@ class ChatAPIManager: NSObject {
         socket.emit("connectUser", user)
         print("Emitted connectUser")
         socket.on("userList") { (users, ack) in
-            completion(users)
+            if let users = users[0] as? [Any] {
+                completion(users)
+            } else {
+                print("Still not working")
+            }
         }
 
     }
