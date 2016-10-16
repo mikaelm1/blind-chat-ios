@@ -2,4 +2,4 @@
 build
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
-.Blind-Chat/APIKeys.swift
+Blind-Chat/APIKeys.swift
