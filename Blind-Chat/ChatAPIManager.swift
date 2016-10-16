@@ -34,6 +34,24 @@ class ChatAPIManager: NSObject {
 
     }
     
+    func sendMessage(message: String, user: String) {
+        print("In chatmanager sending message: \(message). For user \(user)")
+        socket.emit("chatMessage", message, user)
+    }
+    
+    func getMessage(completion: @escaping (_ messageInfo: [String: AnyObject]?, _ error: String?) -> Void) {
+        
+        socket.on("newChatMessage") { (msgArray, ack) in
+            print("CHAT MESSAGE DICT: \(msgArray)")
+            if let msgDict = msgArray[0] as? [String: AnyObject] {
+                completion(msgDict, nil)
+            } else {
+                completion(nil, "Error getting message")
+            }
+            
+        }
+    }
+    
     func openConnection() {
         socket.connect()
     }

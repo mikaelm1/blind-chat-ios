@@ -65,7 +65,7 @@ class MessagesViewController: UIViewController {
         title = "Users"
         setupViews()
         
-        messages = Array(repeating: "Message", count: 100)
+        //messages = Array(repeating: "Message", count: 100)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed(sender:)))
     }
@@ -76,6 +76,7 @@ class MessagesViewController: UIViewController {
         super.viewWillAppear(animated)
         getUsers()
         setupNotifications()
+        listenForMessagesFromOthers()
     }
     
     deinit {
@@ -135,6 +136,22 @@ class MessagesViewController: UIViewController {
     
     // MARK: - API
     
+    func listenForMessagesFromOthers() {
+        chatManager.getMessage { (messageInfo, error) in
+            if let error = error {
+                print("Error getting message: \(error)")
+            } else {
+                print("Got message")
+                if let msg = messageInfo?["message"] as? String {
+                    self.messages.append(msg)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
     func getUsers() {
         ChatAPIManager.shared.connectToServerWithUser(user: user) { (users) in
             print("USERS: \(users.count)")
@@ -165,9 +182,10 @@ class MessagesViewController: UIViewController {
     // MARK: - Actions
     
     func sendButtonPressed(sender: UIButton) {
-        print("Sending message...")
+        
         messageInputField.resignFirstResponder()
         if let msg = messageInputField.text, !msg.isEmpty {
+            print("Sending message...")
             send(message: msg)
             messageInputField.text = ""
         }

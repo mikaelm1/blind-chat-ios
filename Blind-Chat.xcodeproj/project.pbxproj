@@ -10,6 +10,7 @@
 		706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */; };
 		706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */; };
 		706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */; };
+		706F37F41DB3403A009BBFC0 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37F31DB3403A009BBFC0 /* APIKeys.swift */; };
 		70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */; };
 		70C6A2401DA73CA300FAE6A4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */; };
 		70C6A2431DA73CA300FAE6A4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 70C6A2411DA73CA300FAE6A4 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 		706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsController.swift; sourceTree = "<group>"; };
 		706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsCell.swift; sourceTree = "<group>"; };
+		706F37F31DB3403A009BBFC0 /* APIKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		70C6A23A1DA73CA300FAE6A4 /* Blind-Chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Blind-Chat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70C6A23D1DA73CA300FAE6A4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		70C6A23F1DA73CA300FAE6A4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			children = (
 				70C6A2851DA74A7B00FAE6A4 /* ChatAPIManager.swift */,
 				70C6A28B1DA8E70500FAE6A4 /* APIManager.swift */,
+				706F37F31DB3403A009BBFC0 /* APIKeys.swift */,
 			);
 			name = Util;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */,
 				706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */,
 				70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */,
+				706F37F41DB3403A009BBFC0 /* APIKeys.swift in Sources */,
 				70C6A2881DA7707300FAE6A4 /* MessagesViewController.swift in Sources */,
 				706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */,
 				706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */,
