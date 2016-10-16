@@ -14,6 +14,7 @@ class MessagesViewController: UIViewController {
     var user: String!
     var allusers = [String]()
     var messages = [String]()
+    let chatManager = ChatAPIManager.shared
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -69,20 +70,38 @@ class MessagesViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed(sender:)))
     }
     
+    var messageInputContainerBottomConstraint: NSLayoutConstraint!
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getUsers()
+        setupNotifications()
+    }
+    
+    deinit {
+        print("Deinitializing...")
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    // MARK: - Helpers
+    
+    func setupNotifications() {
+        
+        // keyboard notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        
     }
     
     // MARK: - Views
     
     func setupMessageInputFields() {
         view.addSubview(messageInputContainer)
-        messageInputContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        messageInputContainerBottomConstraint = messageInputContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        messageInputContainerBottomConstraint.isActive = true
         messageInputContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         messageInputContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         messageInputContainer.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
         
         messageInputContainer.addSubview(messageInputSeperator)
         messageInputSeperator.leadingAnchor.constraint(equalTo: messageInputContainer.leadingAnchor, constant: 0).isActive = true
@@ -139,10 +158,36 @@ class MessagesViewController: UIViewController {
         getUsers()
     }
     
+    func send(message: String) {
+        chatManager.sendMessage(message: message, user: user)
+    }
+    
     // MARK: - Actions
     
     func sendButtonPressed(sender: UIButton) {
         print("Sending message...")
+        messageInputField.resignFirstResponder()
+        if let msg = messageInputField.text, !msg.isEmpty {
+            send(message: msg)
+            messageInputField.text = ""
+        }
+        
+    }
+    
+    // MARK: - Keyboard
+    
+    func handleKeyboardDidShow(notification: Notification) {
+        if let userInfo = (notification as NSNotification).userInfo {
+            if let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+                messageInputContainerBottomConstraint.constant = -keyboardFrame.size.height
+                view.layoutIfNeeded()
+            }
+        }
+    }
+    
+    func handleKeyboardDidHide(notification: Notification) {
+        messageInputContainerBottomConstraint.constant = 0
+        view.layoutIfNeeded()
     }
 
 }
@@ -150,6 +195,9 @@ class MessagesViewController: UIViewController {
 extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if messages.count > 0 {
+            scrollToBottom()
+        }
         return messages.count
     }
     
@@ -170,4 +218,13 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
         return CGSize(width: view.frame.width, height: 50)
     }
     
+    func scrollToBottom() {
+        let delay = Double(NSEC_PER_SEC) * 0.1
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay / Double(NSEC_PER_SEC)) {
+            let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
+            self.collectionView.scrollToItem(at: lastIndex, at: .top, animated: true)
+        }
+    }
+    
 }
+
