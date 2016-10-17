@@ -15,6 +15,7 @@ class MessagesViewController: UIViewController {
     var allusers = [String]()
     var messages = [String]()
     let chatManager = ChatAPIManager.shared
+    var room: String? = nil
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -75,8 +76,16 @@ class MessagesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getUsers()
+        joinRoom()
         setupNotifications()
-        listenForMessagesFromOthers()
+        //listenForMessagesFromOthers()
+        listenForRoomMessages()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        leaveRoom()
     }
     
     deinit {
@@ -136,15 +145,41 @@ class MessagesViewController: UIViewController {
     
     // MARK: - API
     
+    func joinRoom() {
+        chatManager.join(room: room!)
+    }
+    
+    func leaveRoom() {
+        chatManager.leave(room: room!)
+    }
+    
     func listenForMessagesFromOthers() {
+        /*
         chatManager.getMessage { (messageInfo, error) in
             if let error = error {
                 print("Error getting message: \(error)")
             } else {
                 print("Got message")
                 if let msg = messageInfo?["message"] as? String {
-                    self.messages.append(msg)
+                    
                     DispatchQueue.main.async {
+                        self.messages.append(msg)
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+        */
+    }
+    
+    func listenForRoomMessages() {
+        chatManager.getMessages(forRoom: room!) { (messageInfo, error) in
+            if let _ = error {
+                print("Error geting message")
+            } else {
+                if let msg = messageInfo?["message"] as? String {
+                    DispatchQueue.main.async {
+                        self.messages.append(msg)
                         self.collectionView.reloadData()
                     }
                 }
@@ -153,6 +188,7 @@ class MessagesViewController: UIViewController {
     }
     
     func getUsers() {
+        /*
         ChatAPIManager.shared.connectToServerWithUser(user: user) { (users) in
             print("USERS: \(users.count)")
             print("USERS: \(users)")
@@ -169,14 +205,15 @@ class MessagesViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
+         */
     }
     
     func refreshButtonPressed(sender: UIBarButtonItem) {
         getUsers()
     }
     
-    func send(message: String) {
-        chatManager.sendMessage(message: message, user: user)
+    func send(message: String, forRoom room: String) {
+        chatManager.send(message: message, room: room)
     }
     
     // MARK: - Actions
@@ -186,7 +223,7 @@ class MessagesViewController: UIViewController {
         messageInputField.resignFirstResponder()
         if let msg = messageInputField.text, !msg.isEmpty {
             print("Sending message...")
-            send(message: msg)
+            send(message: msg, forRoom: room!)
             messageInputField.text = ""
         }
         

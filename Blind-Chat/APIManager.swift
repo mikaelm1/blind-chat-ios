@@ -12,9 +12,11 @@ class APIManager {
     
     static let shared = APIManager()
     
+    private let localhost = APIKeys.localIP
+    
     func registerUser(user: User, withPassword pwd: String, completion: @escaping (_ error: String?) -> Void) {
         
-        var request = URLRequest(url: URL(string: "http://localhost:5000/register")!)
+        var request = URLRequest(url: URL(string: "http://\(localhost):5000/register")!)
         request.httpMethod = "POST"
         let postString = "username=\(user.username!)&email=\(user.email!)&password=\(pwd)"
         request.httpBody = postString.data(using: .utf8)
@@ -39,7 +41,7 @@ class APIManager {
     }
     
     func loginUser(username: String, password: String, completion: @escaping (_ error: String?) -> Void) {
-        var request = URLRequest(url: URL(string: "http://localhost:5000/login")!)
+        var request = URLRequest(url: URL(string: "http://\(localhost):5000/login")!)
         request.httpMethod = "POST"
         let postString = "username=\(username)&password=\(password)"
         request.httpBody = postString.data(using: .utf8)

@@ -13,7 +13,7 @@ class ChatAPIManager: NSObject {
     
     static let shared = ChatAPIManager()
     
-    var socket = SocketIOClient(socketURL: URL(string: "http://127.0.0.1:5000")!)
+    var socket = SocketIOClient(socketURL: URL(string: "http://\(APIKeys.localIP):5000")!)
     
     override init() {
         super.init()
@@ -34,11 +34,31 @@ class ChatAPIManager: NSObject {
 
     }
     
+    func join(room: String) {
+        print("Inside join room: \(room)")
+        let data = ["room": room]
+        socket.emit("join", data)
+    }
+    
+    func leave(room: String) {
+        print("Inside leave room: \(room)")
+        let data = ["room": room]
+        socket.emit("leave", data)
+    }
+    
+    /// sends message to a particular room
+    func send(message: String, room: String) {
+        let data = ["message": message, "room": room]
+        socket.emit("room_message", data)
+    }
+    
+    /// sends message to everyone
     func sendMessage(message: String, user: String) {
         print("In chatmanager sending message: \(message). For user \(user)")
         socket.emit("chatMessage", message, user)
     }
     
+    /// listen for broodcast messages
     func getMessage(completion: @escaping (_ messageInfo: [String: AnyObject]?, _ error: String?) -> Void) {
         
         socket.on("newChatMessage") { (msgArray, ack) in
@@ -49,6 +69,19 @@ class ChatAPIManager: NSObject {
                 completion(nil, "Error getting message")
             }
             
+        }
+    }
+    
+    /// Listens for room messages
+    func getMessages(forRoom room: String, completion: @escaping (_ messageInfo: [String: AnyObject]?, _ error: String?) -> Void) {
+        
+        socket.on("new_room_message") { (msgArray, ack) in
+            print("Chat Dict for room \(room): \(msgArray)")
+            if let msgDict = msgArray[0] as? [String: AnyObject] {
+                completion(msgDict, nil)
+            } else {
+                completion(nil, "Error getting message")
+            }
         }
     }
     

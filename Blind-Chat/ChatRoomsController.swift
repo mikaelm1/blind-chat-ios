@@ -40,9 +40,10 @@ class ChatRoomsController: UIViewController {
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
     }
     
-    func gotoChat() {
+    func gotoChat(room: String) {
         let vc = MessagesViewController()
         vc.user = user
+        vc.room = room 
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -67,8 +68,9 @@ extension ChatRoomsController: UICollectionViewDelegate, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Add rooms feature to chat
-        gotoChat()
+        
+        let room = rooms[indexPath.item]
+        gotoChat(room: room)
     }
     
 }
