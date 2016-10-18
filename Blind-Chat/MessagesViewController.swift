@@ -79,6 +79,7 @@ class MessagesViewController: UIViewController {
         joinRoom()
         setupNotifications()
         //listenForMessagesFromOthers()
+        getChatHistory()
         listenForRoomMessages()
     }
     
@@ -182,6 +183,29 @@ class MessagesViewController: UIViewController {
                         self.messages.append(msg)
                         self.collectionView.reloadData()
                     }
+                }
+            }
+        }
+    }
+    
+    func getChatHistory() {
+        chatManager.getChatHistoryFor(room: room!) { (messages, error) in
+            // messages is supposed to be [[String: String]]
+            // Example of single dict in Array:
+            // "content": "Message content", "created": "String date", "room": "Swift"
+            if let error = error {
+                print("Error from chat history callback: \(error)")
+            } else {
+                // store messages in temp array and then update all on main queue
+                var tempArray = [String]()
+                for msgDict in messages! {
+                    let msg = msgDict["content"]
+                    tempArray.append(msg!)
+                }
+                
+                DispatchQueue.main.async {
+                    self.messages = tempArray
+                    self.collectionView.reloadData()
                 }
             }
         }
