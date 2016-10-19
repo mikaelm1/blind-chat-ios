@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		70418C5F1DB8023400FC4D46 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418C5E1DB8023400FC4D46 /* CustomTextField.swift */; };
 		706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */; };
 		706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */; };
 		706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */; };
@@ -27,6 +28,7 @@
 		0CCC7CC6CBA50841FED18903 /* Pods-Blind-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.release.xcconfig"; sourceTree = "<group>"; };
 		10FFFD26260E9AAE0F162D2C /* Pods-Blind-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blind_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		70418C5E1DB8023400FC4D46 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsController.swift; sourceTree = "<group>"; };
 		706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsCell.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			children = (
 				706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */,
 				706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */,
+				70418C5E1DB8023400FC4D46 /* CustomTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				70C6A28C1DA8E70500FAE6A4 /* APIManager.swift in Sources */,
+				70418C5F1DB8023400FC4D46 /* CustomTextField.swift in Sources */,
 				70C6A2401DA73CA300FAE6A4 /* RegisterViewController.swift in Sources */,
 				70C6A23E1DA73CA300FAE6A4 /* AppDelegate.swift in Sources */,
 				70C6A2861DA74A7B00FAE6A4 /* ChatAPIManager.swift in Sources */,

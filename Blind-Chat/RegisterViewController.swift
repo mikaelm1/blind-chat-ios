@@ -11,8 +11,8 @@ import ChameleonFramework
 
 class RegisterViewController: UIViewController {
     
-    let passwordField: UITextField = {
-        let t = UITextField()
+    let passwordField: CustomTextField = {
+        let t = CustomTextField()
         t.translatesAutoresizingMaskIntoConstraints = false
         t.backgroundColor = FlatWhite()
         t.placeholder = "Enter password"
@@ -20,9 +20,9 @@ class RegisterViewController: UIViewController {
         return t
     }()
     
-    let usernameField: UITextField = {
-        let t = UITextField()
-        t.translatesAutoresizingMaskIntoConstraints = false
+    let usernameField: CustomTextField = {
+        let t = CustomTextField()
+        //t.translatesAutoresizingMaskIntoConstraints = false
         t.backgroundColor = FlatWhite()
         t.placeholder = "Enter username"
         t.autocapitalizationType = .none
@@ -30,8 +30,8 @@ class RegisterViewController: UIViewController {
         return t
     }()
     
-    let emailField: UITextField = {
-        let t = UITextField()
+    let emailField: CustomTextField = {
+        let t = CustomTextField()
         t.translatesAutoresizingMaskIntoConstraints = false
         t.backgroundColor = FlatWhite()
         t.placeholder = "Enter email"
