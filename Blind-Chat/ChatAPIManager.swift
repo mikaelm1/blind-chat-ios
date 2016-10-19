@@ -62,7 +62,7 @@ class ChatAPIManager: NSObject {
     func getMessage(completion: @escaping (_ messageInfo: [String: AnyObject]?, _ error: String?) -> Void) {
         
         socket.on("newChatMessage") { (msgArray, ack) in
-            print("CHAT MESSAGE DICT: \(msgArray)")
+            //print("CHAT MESSAGE DICT: \(msgArray)")
             if let msgDict = msgArray[0] as? [String: AnyObject] {
                 completion(msgDict, nil)
             } else {
@@ -76,13 +76,54 @@ class ChatAPIManager: NSObject {
     func getMessages(forRoom room: String, completion: @escaping (_ messageInfo: [String: AnyObject]?, _ error: String?) -> Void) {
         
         socket.on("new_room_message") { (msgArray, ack) in
-            print("Chat Dict for room \(room): \(msgArray)")
+            //print("Chat Dict for room \(room): \(msgArray)")
             if let msgDict = msgArray[0] as? [String: AnyObject] {
                 completion(msgDict, nil)
             } else {
                 completion(nil, "Error getting message")
             }
         }
+    }
+    
+    /// Let server know that user is typing
+    func sendStartedTypingMessage(byUser user: String, fromRoom room: String) {
+        let data = ["room": room, "username": user]
+        socket.emit("start_typing_in_room", data)
+    }
+    
+    /// Let server know that user finished typing
+    func sendEndTypingMessage(byUser user: String, fromRoom room: String) {
+        let data = ["room": room, "username": user]
+        socket.emit("end_typing_in_room", data)
+    }
+    
+    /// Find out which user is typing
+    func listenForTypingUpdates(completion: @escaping(_ user: String?, _ typing: Bool, _ error: String?) -> Void) {
+        
+        socket.on("started_typing") { (data, ack) in
+            //print("Inside started_typing")
+            guard let userInfo = data[0] as? [String: AnyObject] else {
+                completion(nil, false, "Error parsing username")
+                return
+            }
+            
+            if let username = userInfo["user"] as? String {
+                completion(username, true, nil)
+            }
+        }
+        
+        socket.on("ended_typing") { (data, ack) in
+            print("Inside ended typing")
+            guard let userInfo = data[0] as? [String: AnyObject] else {
+                completion(nil, false, "Error parsing user info")
+                return
+            }
+            
+            if let username = userInfo["user"] as? String {
+                completion(username, false, nil)
+            }
+        }
+        
     }
     
     func getChatHistoryFor(room: String, completion: @escaping (_ messages: [[String: String]]?, _ error: String?) -> Void) {

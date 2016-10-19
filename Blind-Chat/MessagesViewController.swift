@@ -15,7 +15,7 @@ class MessagesViewController: UIViewController {
     var allusers = [String]()
     var messages = [String]()
     let chatManager = ChatAPIManager.shared
-    var room: String? = nil
+    var room: String!
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,9 +36,10 @@ class MessagesViewController: UIViewController {
         return v
     }()
     
-    let messageInputField: UITextField = {
+    lazy var messageInputField: UITextField = {
         let f = UITextField()
         f.translatesAutoresizingMaskIntoConstraints = false
+        f.delegate = self
         f.backgroundColor = FlatWhite()
         return f
     }()
@@ -59,15 +60,21 @@ class MessagesViewController: UIViewController {
         v.backgroundColor = FlatRed()
         return v
     }()
+    
+    let updatesLabel: UILabel = {
+        let l = UILabel()
+        l.translatesAutoresizingMaskIntoConstraints = false
+        l.textAlignment = .center
+        l.font = UIFont.systemFont(ofSize: 12)
+        return l
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = FlatWhite()
-        title = "Users"
+        title = room
         setupViews()
-        
-        //messages = Array(repeating: "Message", count: 100)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed(sender:)))
     }
@@ -76,12 +83,18 @@ class MessagesViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getUsers()
         joinRoom()
         setupNotifications()
         //listenForMessagesFromOthers()
         getChatHistory()
         listenForRoomMessages()
+        listenForTypingUpdates()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -136,9 +149,16 @@ class MessagesViewController: UIViewController {
     }
     
     func setupCollectionView() {
+        
+        view.addSubview(updatesLabel)
+        updatesLabel.bottomAnchor.constraint(equalTo: messageInputContainer.topAnchor, constant: 0).isActive = true
+        updatesLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        updatesLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        updatesLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        
         view.addSubview(collectionView)
         collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: messageInputContainer.topAnchor, constant: 0).isActive = true
+        collectionView.bottomAnchor.constraint(equalTo: updatesLabel.topAnchor, constant: 0).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
     }
@@ -177,6 +197,26 @@ class MessagesViewController: UIViewController {
         */
     }
     
+    func listenForTypingUpdates() {
+        chatManager.listenForTypingUpdates { (user, isTyping, error) in
+            if let e = error {
+                print(e)
+            }
+            
+            if let username = user {
+                DispatchQueue.main.async {
+                    if isTyping {
+                        print("\(username) is typing...")
+                        self.updatesLabel.text = "\(username) is typing..."
+                    } else {
+                        print("\(username) finished typing...")
+                        self.updatesLabel.text = ""
+                    }
+                }
+            }
+        }
+    }
+    
     func listenForRoomMessages() {
         chatManager.getMessages(forRoom: room!) { (messageInfo, error) in
             if let _ = error {
@@ -193,7 +233,7 @@ class MessagesViewController: UIViewController {
     }
     
     func getChatHistory() {
-        chatManager.getChatHistoryFor(room: room!) { (messages, error) in
+        chatManager.getChatHistoryFor(room: room) { (messages, error) in
             // messages is supposed to be [[String: String]]
             // Example of single dict in Array:
             // "content": "Message content", "created": "String date", "room": "Swift"
@@ -250,8 +290,8 @@ class MessagesViewController: UIViewController {
         
         messageInputField.resignFirstResponder()
         if let msg = messageInputField.text, !msg.isEmpty {
-            print("Sending message...")
-            send(message: msg, forRoom: room!)
+            //print("Sending message...")
+            send(message: msg, forRoom: room)
             messageInputField.text = ""
         }
         
@@ -300,7 +340,7 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         let estimatedFrame = NSString(string: message).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
         
-        print(estimatedFrame.height)
+        //print(estimatedFrame.height)
         if estimatedFrame.height < 50 {
             return CGSize(width: view.frame.width, height: 50)
         }
@@ -314,6 +354,18 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
             let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
             self.collectionView.scrollToItem(at: lastIndex, at: .top, animated: true)
         }
+    }
+    
+}
+
+extension MessagesViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        chatManager.sendStartedTypingMessage(byUser: user, fromRoom: room)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        chatManager.sendEndTypingMessage(byUser: user, fromRoom: room)
     }
     
 }
