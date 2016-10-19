@@ -21,8 +21,8 @@ class MessagesViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.register(MessagesCell.self, forCellWithReuseIdentifier: "users")
-        cv.backgroundColor = FlatWhite()
+        cv.register(MessagesCell.self, forCellWithReuseIdentifier: "message")
+        cv.backgroundColor = FlatBlue()
         cv.delegate = self
         cv.dataSource = self
         cv.bounces = true
@@ -32,13 +32,14 @@ class MessagesViewController: UIViewController {
     let messageInputContainer: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = FlatWhite()
+        v.backgroundColor = FlatLime()
         return v
     }()
     
     let messageInputField: UITextField = {
         let f = UITextField()
         f.translatesAutoresizingMaskIntoConstraints = false
+        f.backgroundColor = FlatWhite()
         return f
     }()
     
@@ -122,12 +123,15 @@ class MessagesViewController: UIViewController {
         
         messageInputContainer.addSubview(messageInputField)
         messageInputField.leadingAnchor.constraint(equalTo: messageInputContainer.leadingAnchor, constant: 8).isActive = true
-        messageInputField.widthAnchor.constraint(equalTo: messageInputContainer.widthAnchor, multiplier: 0.8).isActive = true
-        messageInputField.centerYAnchor.constraint(equalTo: messageInputContainer.centerYAnchor, constant: 0).isActive = true
+        messageInputField.widthAnchor.constraint(equalTo: messageInputContainer.widthAnchor, multiplier: 0.75).isActive = true
+        messageInputField.topAnchor.constraint(equalTo: messageInputContainer.topAnchor, constant: 6).isActive = true
+        messageInputField.bottomAnchor.constraint(equalTo: messageInputContainer.bottomAnchor, constant: -6).isActive = true
+        //messageInputField.centerYAnchor.constraint(equalTo: messageInputContainer.centerYAnchor, constant: 0).isActive = true
         
         messageInputContainer.addSubview(sendMessageButton)
         sendMessageButton.trailingAnchor.constraint(equalTo: messageInputContainer.trailingAnchor, constant: 0).isActive = true
-        sendMessageButton.centerYAnchor.constraint(equalTo: messageInputContainer.centerYAnchor, constant: 0).isActive = true
+        sendMessageButton.topAnchor.constraint(equalTo: messageInputContainer.topAnchor, constant: 6).isActive = true
+        sendMessageButton.bottomAnchor.constraint(equalTo: messageInputContainer.bottomAnchor, constant: -6).isActive = true
         sendMessageButton.widthAnchor.constraint(equalTo: messageInputContainer.widthAnchor, multiplier: 0.2).isActive = true
     }
     
@@ -237,7 +241,7 @@ class MessagesViewController: UIViewController {
     }
     
     func send(message: String, forRoom room: String) {
-        chatManager.send(message: message, room: room)
+        chatManager.send(message: message, forRoom: room, fromUser: user)
     }
     
     // MARK: - Actions
@@ -281,20 +285,27 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "users", for: indexPath) as! MessagesCell
-        let message = messages[indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "message", for: indexPath) as! MessagesCell
+        let message = messages[indexPath.item]
         
-        if indexPath.item % 2 == 0 {
-            cell.configureCell(forMessage: message, fromCurrentUser: false)
-        } else {
-            cell.configureCell(forMessage: message, fromCurrentUser: true)
-        }
+        cell.configureCell(forMessage: message)
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 50)
+        
+        let message = messages[indexPath.item]
+        let size = CGSize(width: 250, height: 1000)
+        let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+        let estimatedFrame = NSString(string: message).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
+        
+        print(estimatedFrame.height)
+        if estimatedFrame.height < 50 {
+            return CGSize(width: view.frame.width, height: 50)
+        }
+        
+        return CGSize(width: view.frame.width, height: estimatedFrame.height * 1.2)
     }
     
     func scrollToBottom() {

@@ -47,8 +47,8 @@ class ChatAPIManager: NSObject {
     }
     
     /// sends message to a particular room
-    func send(message: String, room: String) {
-        let data = ["message": message, "room": room]
+    func send(message: String, forRoom room: String, fromUser user: String) {
+        let data = ["message": message, "room": room, "user": user]
         socket.emit("room_message", data)
     }
     
