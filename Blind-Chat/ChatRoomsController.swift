@@ -13,29 +13,36 @@ class ChatRoomsController: UIViewController {
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 2
+        layout.minimumInteritemSpacing = 0
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(RoomsCell.self, forCellWithReuseIdentifier: "rooms")
-        cv.backgroundColor = FlatGray()
+        cv.backgroundColor = FlatBlue()
         cv.delegate = self
         cv.dataSource = self
         cv.bounces = true
         return cv
     }()
     
-    var rooms = ["Swift", "Python", "C++", "Brainfuck", "JavaScript", "Ruby", "Java"]
+    var rooms = ["Swift", "Python", "C++", "Brainfuck", "JavaScript", "Ruby", "Java", "C", "C#", "PHP", "Objective-C", "R", "Haskell", "Erlang"]
     var user: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Rooms"
+        
+        navigationController?.navigationBar.tintColor = FlatWhite()
+        navigationController?.navigationBar.barTintColor = FlatMint()
+        navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
+        
         setupViews()
     }
     
     func setupViews() {
         view.addSubview(collectionView)
-        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20).isActive = true
+        collectionView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
         collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
         collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
@@ -44,7 +51,10 @@ class ChatRoomsController: UIViewController {
     func gotoChat(room: String) {
         let vc = MessagesViewController()
         vc.user = user
-        vc.room = room 
+        vc.room = room
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        navigationItem.backBarButtonItem = backButton
         navigationController?.pushViewController(vc, animated: true)
     }
     

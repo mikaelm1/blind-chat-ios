@@ -17,9 +17,12 @@ class MessagesViewController: UIViewController {
     let chatManager = ChatAPIManager.shared
     var room: String!
     var numPeopleTyping = [String]()
+    var alreadySentTypingUpdate = false 
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 2
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(MessagesCell.self, forCellWithReuseIdentifier: "message")
@@ -77,7 +80,7 @@ class MessagesViewController: UIViewController {
         title = room
         setupViews()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed(sender:)))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refreshButtonPressed(sender:)))
     }
     
     var messageInputContainerBottomConstraint: NSLayoutConstraint!
@@ -114,8 +117,8 @@ class MessagesViewController: UIViewController {
     func setupNotifications() {
         
         // keyboard notifications
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardDidHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
     }
     
@@ -310,6 +313,7 @@ class MessagesViewController: UIViewController {
     
     func handleKeyboardDidShow(notification: Notification) {
         if let userInfo = (notification as NSNotification).userInfo {
+            scrollToBottom()
             if let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 messageInputContainerBottomConstraint.constant = -keyboardFrame.size.height
                 view.layoutIfNeeded()
@@ -318,8 +322,11 @@ class MessagesViewController: UIViewController {
     }
     
     func handleKeyboardDidHide(notification: Notification) {
+        scrollToBottom()
         messageInputContainerBottomConstraint.constant = 0
-        view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2) { 
+            self.view.layoutIfNeeded()
+        }
     }
 
 }
@@ -358,7 +365,7 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
     }
     
     func scrollToBottom() {
-        let delay = Double(NSEC_PER_SEC) * 0.1
+        let delay = Double(NSEC_PER_SEC) * 0.2
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay / Double(NSEC_PER_SEC)) {
             let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
             self.collectionView.scrollToItem(at: lastIndex, at: .top, animated: true)
@@ -370,11 +377,21 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
 extension MessagesViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        chatManager.sendStartedTypingMessage(byUser: user, fromRoom: room)
+        //chatManager.sendStartedTypingMessage(byUser: user, fromRoom: room)
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         chatManager.sendEndTypingMessage(byUser: user, fromRoom: room)
+        alreadySentTypingUpdate = false 
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if !alreadySentTypingUpdate {
+            chatManager.sendStartedTypingMessage(byUser: user, fromRoom: room)
+        }
+        alreadySentTypingUpdate = true
+        return true 
     }
     
 }

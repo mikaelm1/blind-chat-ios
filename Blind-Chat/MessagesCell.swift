@@ -28,6 +28,13 @@ class MessagesCell: UICollectionViewCell {
         return iv
     }()
     
+    let seperator: UIView = {
+        let v = UIView()
+        v.translatesAutoresizingMaskIntoConstraints = false
+        v.backgroundColor = FlatBlue()
+        return v
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -46,17 +53,22 @@ class MessagesCell: UICollectionViewCell {
     
     func setupViews() {
         
+        addSubview(seperator)
+        seperator.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0).isActive = true
+        seperator.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0).isActive = true
+        seperator.topAnchor.constraint(equalTo: topAnchor, constant: 0).isActive = true
+        seperator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        
         addSubview(profileImage)
         profileImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8).isActive = true
         profileImage.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.1).isActive = true
-        profileImage.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        profileImage.topAnchor.constraint(equalTo: seperator.bottomAnchor, constant: 8).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
         
         addSubview(messageLabel)
         messageLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 8).isActive = true
         messageLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8).isActive = true
-        messageLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
-        //messageLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8).isActive = true
+        messageLabel.topAnchor.constraint(equalTo: seperator.bottomAnchor, constant: 8).isActive = true
     }
     
     required init?(coder aDecoder: NSCoder) {

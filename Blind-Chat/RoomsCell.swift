@@ -20,7 +20,7 @@ class RoomsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = FlatRed()
+        backgroundColor = FlatWhite()
         setupViews()
     }
     
