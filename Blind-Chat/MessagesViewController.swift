@@ -359,10 +359,11 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
         
         //print(estimatedFrame.height)
         if estimatedFrame.height < 50 {
-            return CGSize(width: view.frame.width, height: 50)
+            return CGSize(width: view.frame.width, height: 80)
         }
         
-        return CGSize(width: view.frame.width, height: estimatedFrame.height * 1.2)
+        // add 35 to compensate for the height of username labels
+        return CGSize(width: view.frame.width, height: estimatedFrame.height * 1.2 + 40)
     }
     
     func scrollToBottom() {
