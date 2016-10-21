@@ -13,7 +13,7 @@ class MessagesViewController: UIViewController {
     
     var user: String!
     var allusers = [String]()
-    var messages = [String]()
+    var messages = [Message]()
     let chatManager = ChatAPIManager.shared
     var room: String!
     var numPeopleTyping = [String]()
@@ -235,8 +235,9 @@ class MessagesViewController: UIViewController {
                 print("Error geting message")
             } else {
                 if let msg = messageInfo?["message"] as? String {
+                    print(msg)
                     DispatchQueue.main.async {
-                        self.messages.append(msg)
+                        //self.messages.append(msg)
                         self.collectionView.reloadData()
                     }
                 }
@@ -253,10 +254,10 @@ class MessagesViewController: UIViewController {
                 print("Error from chat history callback: \(error)")
             } else {
                 // store messages in temp array and then update all on main queue
-                var tempArray = [String]()
+                var tempArray = [Message]()
                 for msgDict in messages! {
-                    let msg = msgDict["content"]
-                    tempArray.append(msg!)
+                    let msg = Message(messageDict: msgDict)
+                    tempArray.append(msg)
                 }
                 
                 DispatchQueue.main.async {
@@ -351,7 +352,7 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let message = messages[indexPath.item]
+        let message = messages[indexPath.item].content!
         let size = CGSize(width: 250, height: 1000)
         let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         let estimatedFrame = NSString(string: message).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 14)], context: nil)
@@ -368,7 +369,9 @@ extension MessagesViewController: UICollectionViewDelegate, UICollectionViewDele
         let delay = Double(NSEC_PER_SEC) * 0.2
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay / Double(NSEC_PER_SEC)) {
             let lastIndex = IndexPath(item: self.messages.count - 1, section: 0)
-            self.collectionView.scrollToItem(at: lastIndex, at: .top, animated: true)
+            if lastIndex.item > 0 {
+                self.collectionView.scrollToItem(at: lastIndex, at: .top, animated: true)
+            }
         }
     }
     

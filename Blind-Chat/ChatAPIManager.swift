@@ -129,8 +129,8 @@ class ChatAPIManager: NSObject {
     func getChatHistoryFor(room: String, completion: @escaping (_ messages: [[String: String]]?, _ error: String?) -> Void) {
         print("Inside chat hsitory for room: \(room)")
         socket.on("room_messages") { (data, _) in
-            print("Got message history for room \(room)")
-            print("Messages: \(data[0])")
+            //print("Got message history for room \(room)")
+            //print("Messages: \(data[0])")
             
             guard let messagesArray = data[0] as? [String: AnyObject] else {
                 completion(nil, "Error converting messages")
@@ -141,6 +141,7 @@ class ChatAPIManager: NSObject {
                 completion(nil, "Error parsing messages")
                 return
             }
+            print(messagesArrayOfDicts.last)
             completion(messagesArrayOfDicts, nil)
         }
     }

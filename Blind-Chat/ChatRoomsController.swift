@@ -38,6 +38,12 @@ class ChatRoomsController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: FlatWhite()]
         
         setupViews()
+        addLogoutButton()
+    }
+    
+    func addLogoutButton() {
+        let btn = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutButtonPressed(sender:)))
+        navigationItem.rightBarButtonItem = btn
     }
     
     func setupViews() {
@@ -56,6 +62,13 @@ class ChatRoomsController: UIViewController {
         backButton.title = ""
         navigationItem.backBarButtonItem = backButton
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    // MARK: - Actions
+    
+    func logoutButtonPressed(sender: UIBarButtonItem) {
+        let vc = RegisterViewController()
+        present(vc, animated: true, completion: nil)
     }
     
 }

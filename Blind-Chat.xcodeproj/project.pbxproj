@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		70418C5F1DB8023400FC4D46 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418C5E1DB8023400FC4D46 /* CustomTextField.swift */; };
 		70418C671DB92EF600FC4D46 /* Blind_ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418C661DB92EF600FC4D46 /* Blind_ChatTests.swift */; };
+		70418C6F1DBAA4DE00FC4D46 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418C6E1DBAA4DE00FC4D46 /* Message.swift */; };
 		706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */; };
 		706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */; };
 		706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */; };
@@ -43,6 +44,7 @@
 		70418C641DB92EF600FC4D46 /* Blind-ChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Blind-ChatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		70418C661DB92EF600FC4D46 /* Blind_ChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blind_ChatTests.swift; sourceTree = "<group>"; };
 		70418C681DB92EF600FC4D46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		70418C6E1DBAA4DE00FC4D46 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsController.swift; sourceTree = "<group>"; };
 		706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsCell.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				70C6A2891DA8E5E300FAE6A4 /* User.swift */,
+				70418C6E1DBAA4DE00FC4D46 /* Message.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				70C6A28A1DA8E5E300FAE6A4 /* User.swift in Sources */,
 				706F37F41DB3403A009BBFC0 /* APIKeys.swift in Sources */,
 				70C6A2881DA7707300FAE6A4 /* MessagesViewController.swift in Sources */,
+				70418C6F1DBAA4DE00FC4D46 /* Message.swift in Sources */,
 				706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */,
 				706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */,
 			);
@@ -545,6 +549,7 @@
 				70418C6C1DB92EF600FC4D46 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		70C6A2351DA73CA300FAE6A4 /* Build configuration list for PBXProject "Blind-Chat" */ = {
 			isa = XCConfigurationList;

@@ -46,8 +46,8 @@ class MessagesCell: UICollectionViewCell {
         layoutIfNeeded()
     }
     
-    func configureCell(forMessage message: String) {
-        messageLabel.text = message
+    func configureCell(forMessage message: Message) {
+        messageLabel.text = message.content
         
     }
     
