@@ -35,13 +35,13 @@ class ChatAPIManager: NSObject {
     }
     
     func join(room: String) {
-        print("Inside join room: \(room)")
+        //print("Inside join room: \(room)")
         let data = ["room": room]
         socket.emit("join", data)
     }
     
     func leave(room: String) {
-        print("Inside leave room: \(room)")
+        //print("Inside leave room: \(room)")
         let data = ["room": room]
         socket.emit("leave", data)
     }

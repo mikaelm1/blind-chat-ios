@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		70418C5F1DB8023400FC4D46 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418C5E1DB8023400FC4D46 /* CustomTextField.swift */; };
+		70418C671DB92EF600FC4D46 /* Blind_ChatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70418C661DB92EF600FC4D46 /* Blind_ChatTests.swift */; };
 		706F37EE1DB1C909009BBFC0 /* ChatRoomsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */; };
 		706F37F01DB1C97A009BBFC0 /* MessagesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */; };
 		706F37F21DB1C9C7009BBFC0 /* RoomsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */; };
@@ -24,11 +25,24 @@
 		FED019A494B900B0A647D5C2 /* Pods_Blind_Chat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		70418C691DB92EF600FC4D46 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 70C6A2321DA73CA300FAE6A4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 70C6A2391DA73CA300FAE6A4;
+			remoteInfo = "Blind-Chat";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		0CCC7CC6CBA50841FED18903 /* Pods-Blind-Chat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.release.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.release.xcconfig"; sourceTree = "<group>"; };
 		10FFFD26260E9AAE0F162D2C /* Pods-Blind-Chat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Blind-Chat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Blind-Chat/Pods-Blind-Chat.debug.xcconfig"; sourceTree = "<group>"; };
 		6028A181360EA61F2B689877 /* Pods_Blind_Chat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Blind_Chat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		70418C5E1DB8023400FC4D46 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		70418C641DB92EF600FC4D46 /* Blind-ChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Blind-ChatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70418C661DB92EF600FC4D46 /* Blind_ChatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blind_ChatTests.swift; sourceTree = "<group>"; };
+		70418C681DB92EF600FC4D46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		706F37ED1DB1C909009BBFC0 /* ChatRoomsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomsController.swift; sourceTree = "<group>"; };
 		706F37EF1DB1C97A009BBFC0 /* MessagesCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesCell.swift; sourceTree = "<group>"; };
 		706F37F11DB1C9C7009BBFC0 /* RoomsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomsCell.swift; sourceTree = "<group>"; };
@@ -47,6 +61,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		70418C611DB92EF600FC4D46 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70C6A2371DA73CA300FAE6A4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -66,10 +87,20 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		70418C651DB92EF600FC4D46 /* Blind-ChatTests */ = {
+			isa = PBXGroup;
+			children = (
+				70418C661DB92EF600FC4D46 /* Blind_ChatTests.swift */,
+				70418C681DB92EF600FC4D46 /* Info.plist */,
+			);
+			path = "Blind-ChatTests";
+			sourceTree = "<group>";
+		};
 		70C6A2311DA73CA300FAE6A4 = {
 			isa = PBXGroup;
 			children = (
 				70C6A23C1DA73CA300FAE6A4 /* Blind-Chat */,
+				70418C651DB92EF600FC4D46 /* Blind-ChatTests */,
 				70C6A23B1DA73CA300FAE6A4 /* Products */,
 				7490854C79CE4B6B562BF2EE /* Pods */,
 				38B7482CC6D82504B50FB3F6 /* Frameworks */,
@@ -80,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				70C6A23A1DA73CA300FAE6A4 /* Blind-Chat.app */,
+				70418C641DB92EF600FC4D46 /* Blind-ChatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,6 +182,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		70418C631DB92EF600FC4D46 /* Blind-ChatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70418C6D1DB92EF600FC4D46 /* Build configuration list for PBXNativeTarget "Blind-ChatTests" */;
+			buildPhases = (
+				70418C601DB92EF600FC4D46 /* Sources */,
+				70418C611DB92EF600FC4D46 /* Frameworks */,
+				70418C621DB92EF600FC4D46 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70418C6A1DB92EF600FC4D46 /* PBXTargetDependency */,
+			);
+			name = "Blind-ChatTests";
+			productName = "Blind-ChatTests";
+			productReference = 70418C641DB92EF600FC4D46 /* Blind-ChatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		70C6A2391DA73CA300FAE6A4 /* Blind-Chat */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 70C6A24C1DA73CA300FAE6A4 /* Build configuration list for PBXNativeTarget "Blind-Chat" */;
@@ -180,6 +230,12 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = MSquaredmm;
 				TargetAttributes = {
+					70418C631DB92EF600FC4D46 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = DU7XEDNZGC;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 70C6A2391DA73CA300FAE6A4;
+					};
 					70C6A2391DA73CA300FAE6A4 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = DU7XEDNZGC;
@@ -202,11 +258,19 @@
 			projectRoot = "";
 			targets = (
 				70C6A2391DA73CA300FAE6A4 /* Blind-Chat */,
+				70418C631DB92EF600FC4D46 /* Blind-ChatTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		70418C621DB92EF600FC4D46 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70C6A2381DA73CA300FAE6A4 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -268,6 +332,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		70418C601DB92EF600FC4D46 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				70418C671DB92EF600FC4D46 /* Blind_ChatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		70C6A2361DA73CA300FAE6A4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +359,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		70418C6A1DB92EF600FC4D46 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 70C6A2391DA73CA300FAE6A4 /* Blind-Chat */;
+			targetProxy = 70418C691DB92EF600FC4D46 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		70C6A2411DA73CA300FAE6A4 /* Main.storyboard */ = {
@@ -308,6 +388,34 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		70418C6B1DB92EF600FC4D46 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DU7XEDNZGC;
+				INFOPLIST_FILE = "Blind-ChatTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.msquaredmm.Blind-ChatTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Blind-Chat.app/Blind-Chat";
+			};
+			name = Debug;
+		};
+		70418C6C1DB92EF600FC4D46 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DU7XEDNZGC;
+				INFOPLIST_FILE = "Blind-ChatTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.msquaredmm.Blind-ChatTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Blind-Chat.app/Blind-Chat";
+			};
+			name = Release;
+		};
 		70C6A24A1DA73CA300FAE6A4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -430,6 +538,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		70418C6D1DB92EF600FC4D46 /* Build configuration list for PBXNativeTarget "Blind-ChatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70418C6B1DB92EF600FC4D46 /* Debug */,
+				70418C6C1DB92EF600FC4D46 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		70C6A2351DA73CA300FAE6A4 /* Build configuration list for PBXProject "Blind-Chat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

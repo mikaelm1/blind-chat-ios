@@ -16,13 +16,14 @@ class MessagesViewController: UIViewController {
     var messages = [String]()
     let chatManager = ChatAPIManager.shared
     var room: String!
+    var numPeopleTyping = [String]()
     
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
         cv.register(MessagesCell.self, forCellWithReuseIdentifier: "message")
-        cv.backgroundColor = FlatBlue()
+        cv.backgroundColor = FlatWhite()
         cv.delegate = self
         cv.dataSource = self
         cv.bounces = true
@@ -32,7 +33,7 @@ class MessagesViewController: UIViewController {
     let messageInputContainer: UIView = {
         let v = UIView()
         v.translatesAutoresizingMaskIntoConstraints = false
-        v.backgroundColor = FlatLime()
+        v.backgroundColor = UIColor.init(white: 0.95, alpha: 1)
         return v
     }()
     
@@ -171,11 +172,11 @@ class MessagesViewController: UIViewController {
     // MARK: - API
     
     func joinRoom() {
-        chatManager.join(room: room!)
+        chatManager.join(room: room)
     }
     
     func leaveRoom() {
-        chatManager.leave(room: room!)
+        chatManager.leave(room: room)
     }
     
     func listenForMessagesFromOthers() {
@@ -207,9 +208,17 @@ class MessagesViewController: UIViewController {
                 DispatchQueue.main.async {
                     if isTyping {
                         print("\(username) is typing...")
-                        self.updatesLabel.text = "\(username) is typing..."
+                        self.numPeopleTyping.append(username)
                     } else {
                         print("\(username) finished typing...")
+                        self.numPeopleTyping = self.numPeopleTyping.filter() {$0 != username}
+                    }
+                    
+                    if self.numPeopleTyping.count == 1 {
+                        self.updatesLabel.text = "\(self.numPeopleTyping[0]) is typing..."
+                    } else if self.numPeopleTyping.count > 1 {
+                        self.updatesLabel.text = "Multiple people are typing..."
+                    } else {
                         self.updatesLabel.text = ""
                     }
                 }
@@ -218,7 +227,7 @@ class MessagesViewController: UIViewController {
     }
     
     func listenForRoomMessages() {
-        chatManager.getMessages(forRoom: room!) { (messageInfo, error) in
+        chatManager.getMessages(forRoom: room) { (messageInfo, error) in
             if let _ = error {
                 print("Error geting message")
             } else {

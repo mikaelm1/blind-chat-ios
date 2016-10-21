@@ -23,12 +23,13 @@ class ChatRoomsController: UIViewController {
         return cv
     }()
     
-    var rooms = ["Swift", "Python", "C++", "Brainfuck"]
+    var rooms = ["Swift", "Python", "C++", "Brainfuck", "JavaScript", "Ruby", "Java"]
     var user: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        title = "Rooms"
         setupViews()
     }
     
