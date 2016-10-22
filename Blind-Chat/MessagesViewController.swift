@@ -234,10 +234,10 @@ class MessagesViewController: UIViewController {
             if let _ = error {
                 print("Error geting message")
             } else {
-                if let msg = messageInfo?["message"] as? String {
-                    print(msg)
+                if let msg = messageInfo?["message"] as? [String: String] {
+                    let message = Message(messageDict: msg)
                     DispatchQueue.main.async {
-                        //self.messages.append(msg)
+                        self.messages.append(message)
                         self.collectionView.reloadData()
                     }
                 }
