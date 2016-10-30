@@ -37,4 +37,8 @@ SQLALCHEMY_TRACK_MODIFICATIONS = True
 
 SERVER_HOST = "your ip address"
 ```
-6. Run `python manage.py run`. If you don't get any errors, then the server is running. You can now run the iOS app, register and start chatting.
+6. Run `python manage.py run`. If you don't get any errors, then the server is running. You can now run the iOS app and start chatting!
+
+### Note
+
+Running the app on the simulator can sometimes fail to connect to the server. If it doesn't connect, rerun the app.
