@@ -22,7 +22,8 @@ side chat functionality. Communicates with a Flask [backend](https://github.com/
 3. Then run `source venv/bin/activate`. This will activate the virtual environment created above.
 4. While in the virtual environment, run `pip install -r requirements.txt`. This will install all the necessary dependencies 
 5. Create a file called settings.py. Add the following to the file:
-    ```
+
+```
 import os 
 
 SECRET_KEY = 'supersecretpassword'
